@@ -1,6 +1,12 @@
 body{
     background-color: #222;
     color: #EEE;
+    font-family: 'BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+content-area{
+    max-width: 800px;
+    padding: 2em 1em 2em 1em;
 }
 
 ul {
