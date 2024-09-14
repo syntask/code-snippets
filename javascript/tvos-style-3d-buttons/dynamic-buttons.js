@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
+function initDynamicButtons(){
+    
     const dynamicButtons = document.querySelectorAll('.dynamic-button');
     for (const button of dynamicButtons) {
         button.addEventListener('mouseenter', function() {
@@ -56,4 +57,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-});
+}

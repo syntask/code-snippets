@@ -26,12 +26,23 @@
             "title": "tvOS Style 3D Buttons",
             "description": "A JavaScript/CSS animation to mimick the behavior of the buttons on the Apple TV.",
             "tags": ["CSS", "JavaScript"],
-            "thumbnail": "",
+            "thumbnail": "/assets/thumbnails/tvos-style-3d-buttons.png",
             "path": "javascript/tvos-style-3d-buttons",
+            "files": [
+
+            ],
+            "demo": "javascript/tvos-style-3d-buttons/tvos-style-3d-buttons.html"
+        },
+        {
+            "title": "Awesome Forms - Form Validation",
+            "description": "A plug and play form validation script that uses HTML5 form validation attributes and JavaScript to provide a better user experience.",
+            "tags": ["JavaScript"],
+            "thumbnail": "",
+            "path": "javascript/awesome-forms",
             "files": [
                 
             ],
-            "demo": "assets/demos/tvos-style-buttons.html"
+            "demo": "assets/demos/awesome-forms.html"
         }
     ]
 }

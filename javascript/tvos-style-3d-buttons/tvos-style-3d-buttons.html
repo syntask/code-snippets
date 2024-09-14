@@ -1,0 +1,38 @@
+<script src="javascript/tvos-style-3d-buttons/dynamic-buttons.js"></script>
+
+I created this JavaScript/CSS animation to mimick the behavior of the buttons on the Apple TV. The buttons are 3D and have a nice hover effect. I mainly created this as a demo but it could be a nice way to draw users to your CTAs. 
+<br><br>
+In this demo I added 'cursor: none' to the dynamic-button class to make the effect even more convincing.
+<div>
+    <button class="dynamic-button" style="padding:1rem 2rem;">Button</button>
+</div>
+
+
+<br><br>
+<iframe src="javascript/tvos-style-3d-buttons/demo/index.html" frameborder="none" style="height:300px;"></iframe>
+<br><br><br>
+<h1>Usage</h1>
+
+1. Import the CSS and JavaScript files
+
+<pre>
+    <code class="html">
+&lt;link rel="stylesheet" href="tvos-style-3d-buttons/css/tvos-style-3d-buttons.css"&gt;
+&lt;script src="tvos-style-3d-buttons/js/tvos-style-3d-buttons.js"&gt;&lt;/script&gt;
+    </code>
+</pre>
+2. Add the HTML elements using the class "dynamic-button"
+
+<pre>
+    <code class="html">
+&lt;button class="dynamic-button"&gt;Button&lt;/button&gt;
+
+&lt;div class="dynamic-button"&gt;
+    Some div content
+&lt;/div&gt;
+    </code>
+</pre>
+
+<script>
+    initDynamicButtons();
+</script>
