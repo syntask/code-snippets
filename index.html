@@ -5,21 +5,121 @@
         <meta property="og:description" content="Syntask Lab - Code Snippets" />
         <meta charset='utf-8'>
         <meta name="viewport" content="initial-scale=1,width=device-width,viewport-fit=cover" />
-        <link rel='stylesheet' href='style.css' />
-        <style>
-        </style>
+        <link rel='stylesheet' href='assets/style.css' />
+        <!-- Import highlight.js-->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css' />
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js'></script>
     </head>
     <body>
-        <div class="content-area">
-            <h1>Syntask Lab</h1>
-            <h2>Code Snippets</h2>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 1</li>
-            </ul>
+        <div class="section">
+            <div class="content-area">
+                <br><br>
+                <h1>Syntask Lab</h1>
+                <br>
+                <div class="main">
+                </div>
+                <ul>
+                </ul>
+            </div>
         </div>
     </body>
+    <script>
+
+        // If the query string contains a "page" parameter...
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get('page');
+        if (page) {
+            // Fetch the page and display it
+            fetch(page)
+                .then(response => response.text())
+                .then(pageData => {
+                    fetch('items.json')
+                    .then(response => response.json())
+                    .then(data => {
+
+                        const items = data.items;
+                        const item = items.find(item => item.demo === page);
+
+                        var htmlStr = `
+                            <div class="flex-row">
+                                <a class="back-button" href="index.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m313-440 196 196q12 12 11.5 28T508-188q-12 11-28 11.5T452-188L188-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l264-264q11-11 27.5-11t28.5 11q12 12 12 28.5T508-715L313-520h447q17 0 28.5 11.5T800-480q0 17-11.5 28.5T760-440H313Z"/></svg>
+                                </a>
+                                <h1>${item.title}</h1>
+                            </div>
+                            ${pageData}
+                            <a href="https://github.com/syntask/code-snippets/blob/main/${item.path}" target="_blank">View in GitHub</a>
+                        `;
+                        // get the "files" property from the item
+                        const files = item.files;
+                        for (const file of files) {
+                            // Check if it is a css file using regex
+                            if (file.match(/\.css$/)) {
+                                // Add the css file to the head of the htmlStr
+                                htmlStr = `<link rel='stylesheet' href='${file}' />` + htmlStr;
+                            }
+                            if (file.match(/\.js$/)) {
+                                // Hack to prevent live server from executing the script tag
+                                scripppppptStr = `<scrippppppt src='${file}'></scrippppppt>`;
+
+                                // scripbStr but replace scrippppppt with script
+                                scriptStr = scripppppptStr.replace(/scrippppppt/g, 'script');
+                                // Add the script to the head of the parent page
+                                document.head.innerHTML += scriptStr;
+                            }
+                        }
+
+                        const container = document.querySelector('.main');
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.innerHTML = htmlStr
+                        container.appendChild(card);
+                        hljs.highlightAll();
+                    });
+                });
+        } else {
+            fetch('items.json')
+            .then(response => response.json())
+            .then(data => {
+                const items = data.items;
+                const list = document.querySelector('ul');
+                items.forEach(item => {
+                    const li = document.createElement('li');
+
+                    const tags = item.tags.map(tag => `<span class="tag ${tag}">${tag}</span>`).join('');
+                    
+                    const img = item.thumbnail ? `
+                            <div class="image-content">
+                                <img class="md" src="${item.thumbnail}" alt="Decorative" />
+                            </div>
+                    ` : '';
+
+                    li.innerHTML = `
+                        <div class="card">
+                            <div class="card-summary">
+                                ${img}
+                                <div class="text-content">
+                                    <h1 class="card-title">${item.title}</h3>
+                                    <p class="description">${item.description}</p>
+                                    <div class="tags">
+                                        ${tags}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content"></div>
+                        </div>
+                    `;
+                    list.appendChild(li);
+                    const cardTitle = li.querySelector('.card-title');
+
+                    if (item.demo){
+                        cardTitle.addEventListener('click', () => {
+                            window.location.href = `index.html?page=${item.demo}`;
+                        });
+                    }
+                });
+            });
+        }
+        
+    </script>
 </html>

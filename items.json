@@ -1,0 +1,37 @@
+{
+    "items": [
+        {
+            "title": "iOS Style Switches",
+            "description": "Fully parametric and scalable style for HTML checkboxes which mimicks the appearance of iOS toggle switches. Created using vanilla CSS only.",
+            "tags": ["CSS"],
+            "thumbnail": "/assets/thumbnails/ios-style-switches.png",
+            "path": "css/ios-style-switches",
+            "files": [
+                "css/ios-style-switches/ios-style-switches.css"
+            ],
+            "demo": "assets/demos/ios-style-switches.html"
+        },
+        {
+            "title": "CSS No-Select",
+            "description": "Use a combination of user-select: none; and cursor: default; to prevent the browser from displaying the text select cursor or allowing the user to select/highlight text. Useful for interface items on web apps.",
+            "tags": ["CSS"],
+            "thumbnail": "",
+            "path": "css/no-select",
+            "files": [
+                "css/no-select/no-select.css"
+            ],
+            "demo": "assets/demos/no-select.html"
+        },
+        {
+            "title": "tvOS Style 3D Buttons",
+            "description": "A JavaScript/CSS animation to mimick the behavior of the buttons on the Apple TV.",
+            "tags": ["CSS", "JavaScript"],
+            "thumbnail": "",
+            "path": "javascript/tvos-style-3d-buttons",
+            "files": [
+                
+            ],
+            "demo": "assets/demos/tvos-style-buttons.html"
+        }
+    ]
+}

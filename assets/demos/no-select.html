@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+
+button{
+  appearance: none;
+  border: none;
+  padding: 1em 2em;
+  background: #007bff;
+  color: white;
+  font-size: 1em;
+  cursor: pointer !important;
+  border-radius: 999px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<p>By combining the 'user-select: none' and 'cursor: default' CSS properties you can create better UI elements for web apps that the user can't accidentally highlight. For example, try selecting the text below:</p>
+
+<br>
+<center>
+  <div class="noselect">This text is not selectable.</div>
+</center>
+
+<br>
+<p>This also works great on buttons:</p>
+<br>
+
+<center>
+  <button class="noselect">Button</button>
+</center>
+
+<br>
+
+<p>Here is the code:</p>
+
+<br>
+
+<pre>
+  <code class="css">
+    .noselect {
+      user-select: none; /* Standard syntax */
+      -webkit-user-select: none; /* Safari syntax*/
+      -ms-user-select: none; /* Internet Explorer syntax */
+      -moz-user-select: none; /* Firefox syntax */
+      cursor: default;
+    }
+  </code>
+</pre>
+
+</body>
+</html>

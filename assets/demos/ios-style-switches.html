@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Syntask Lab - iOS Style Switches</title>
+        <meta property="og:description" content="Syntask Lab - iOS Style Switches" />
+        <meta charset='utf-8'>
+        <meta name="viewport" content="initial-scale=1,width=device-width,viewport-fit=cover" />
+        <link rel='stylesheet' href='ios-style-switches.css' />
+        <link rel='stylesheet' href='../assets/style.css' />
+        <style>
+        </style>
+    </head>
+    <body>
+        I created these switches to mimick the style of iOS's toggle switches. Try them out below:
+        
+        <br><br>
+
+        <center>
+            <div style="display:flex;flex-direction:row;width:fit-content;gap:2em">
+
+                <div style="padding:1em;aspect-ratio:1;display:flex;align-items:center;border-radius:.25em;background-color:#eee;border:1px solid #eee;font-size:20px;">
+                    <label class="toggle-switch light">
+                        <input type="checkbox">
+                        <i></i>
+                    </label>
+                </div>
+
+                <div style="padding:1em;aspect-ratio:1;display:flex;align-items:center;border-radius:.25em;background-color:#111;border:1px solid #333;font-size:20px;">
+                    <label class="toggle-switch dark">
+                        <input type="checkbox">
+                        <i></i>
+                    </label>
+                </div>
+                
+            </div>
+        </center>
+
+        <br><br><br>
+
+        <h2>Basic usage</h2>
+        To use, just import the css file and wrap your checkbox inputs in a label with the class 'toggle-switch' and add an empty 'i' element inside.
+        
+        <br>
+
+        <pre>
+            <code class="html">
+&lt;head&gt;
+
+    &lt;!-- Import the css file in your head --&gt;
+    &lt;link rel='stylesheet' href='ios-style-switches.css'&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;!-- Add the toggle switches like this --&gt;
+    &lt;label class="toggle-switch light"&gt;
+        &lt;input type="checkbox"&gt;
+        &lt;i&gt;&lt;/i&gt;
+    &lt;/label&gt;
+
+&lt;/body&gt;
+            </code>
+        </pre>
+
+        <br><br><br>
+        <h2>Customization</h2>
+        To customize the switch colors, you can either use the 'light' and 'dark' classes, or define your own class.
+
+        <pre>
+            <code class="html">
+&lt;style&gt;
+
+.toggle-switch.custom-class{
+    --track-base-color: #ccc;
+    --track-active-color: #34c759;
+    --handle-color: #FFF;
+    --handle-shadow-color: rgba(0, 0, 0, 0.24);
+}
+
+&lt;/style&gt;
+
+
+&lt;!-- Light --&gt;
+&lt;label class="toggle-switch light"&gt;
+    &lt;input type="checkbox"&gt;
+    &lt;i&gt;&lt;/i&gt;
+&lt;/label&gt;
+
+&lt;!-- Dark --&gt;
+&lt;label class="toggle-switch dark"&gt;
+    &lt;input type="checkbox"&gt;
+    &lt;i&gt;&lt;/i&gt;
+&lt;/label&gt;
+
+&lt;!-- Custom --&gt;
+&lt;label class="toggle-switch custom-class"&gt;
+    &lt;input type="checkbox"&gt;
+    &lt;i&gt;&lt;/i&gt;
+&lt;/label&gt;
+            </code>
+        </pre>
+        
+        <br><br>
+        <h2>Sizing</h2>
+        The switches are created using relative units, so they are easily scalable by setting their 'height' property. By default they are 1.5em tall, which allows you to easily insert them inline and have them fit nicely with their label text. 
+        
+        <br><br><br>
+
+        <div style="display:flex;flex-direction:row;width:fit-content;gap:.5em;align-items:center;font-size:.75rem;font-weight:bold;">
+            <label class="toggle-switch dark">
+                <input type="checkbox" id="checkbox1">
+                <i></i>
+            </label>
+            <label for="checkbox1">Smaller size</label>
+        </div>
+        <br>
+        <div style="display:flex;flex-direction:row;width:fit-content;gap:.5em;align-items:center;font-weight:bold;">
+            <label class="toggle-switch dark">
+                <input type="checkbox" id="checkbox2" checked>
+                <i></i>
+            </label>
+            <label for="checkbox2">Regular size</label>
+        </div>
+        <br>
+        <div style="display:flex;flex-direction:row;width:fit-content;gap:.5em;align-items:center;font-size:1.5rem;font-weight:bold;">
+            <label class="toggle-switch dark">
+                <input type="checkbox" id="checkbox3">
+                <i></i>
+            </label>
+            <label for="checkbox3">Larger size</label>
+        </div>
+
+        <br><br>
+
+        However, you can also set the size explicity by setting the 'height' property of the label to your desired px or em value. Or you can define a new subclass if you like.
+
+        <pre>
+            <code class="css">
+.toggle-switch {
+    height: 2em; /* Affects all toggle switches on the page */
+}
+
+.toggle-switch.small {
+    height: 16px; /* Only affects switches with the 'small' class */
+}
+            </code>
+        </pre>
+
+    </body>
+</html>

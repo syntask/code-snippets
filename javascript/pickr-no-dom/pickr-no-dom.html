@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pickr</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
+    <style>
+        .color-picker {
+            height: 32px;
+            width: 32px;
+            border-radius: 999px;
+            transition: all 0.3s;
+        }
+        .color-picker:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+            box-shadow: 0 0 32px rgba(0,0,50,0.2);
+        }
+        body{
+            background-color: #fafafa;;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="color-picker" style="background-color:red;"></div>
+    <div class="color-picker" style="background-color:yellow;"></div>
+    <div class="color-picker" style="background-color:limegreen;"></div>
+    <div class="color-picker" style="background-color:blue;"></div>
+    <script>
+
+        document.querySelectorAll('.color-picker').forEach((element) => {
+            const colorValue = element.style.backgroundColor;
+            const pickr = Pickr.create({
+                el: element,
+                useAsButton: true,
+                theme: 'classic',
+                default: colorValue,
+                components: {
+                    preview: true,
+                    hue: true,
+                    opacity: true,
+
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsla: true,
+                        hsva: true,
+                        cmyk: true,
+                        input: true,
+                        clear: true,
+                        save: true
+                    }
+                }
+            });
+
+            pickr.on('show', (colorSelected) => {
+                pickr.setColor(element.style.backgroundColor);
+            });
+
+            pickr.on('save', (colorSelected) => {
+                element.style.backgroundColor = colorSelected.toHEXA().toString();
+            });
+            pickr.on('hide', (colorSelected) => {
+                element.style.backgroundColor = colorSelected.toHEXA().toString();
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.noselect {
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari syntax*/
+    -ms-user-select: none; /* Internet Explorer syntax */
+    -moz-user-select: none; /* Firefox syntax */
+    cursor: default;
+  }
