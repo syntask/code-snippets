@@ -1,0 +1,32 @@
+    .dynamic-button {
+        position: relative;
+        z-index: 0;
+    }
+
+    .dynamic-button::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        z-index: 2;
+        background-image: radial-gradient(circle at var(--db-highlight-x) var(--db-highlight-y), rgba(255,255,255,.25), rgba(255,255,255,0) 125%);
+        transition: opacity .6s;
+        opacity: 0;
+    }
+
+    .dynamic-button--hover::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        z-index: 2;
+        background-image: radial-gradient(circle at var(--db-highlight-x) var(--db-highlight-y), rgba(255,255,255,.25), rgba(255,255,255,0) 125%);
+        transition: opacity 0.3s;
+        opacity: 1;
+    }

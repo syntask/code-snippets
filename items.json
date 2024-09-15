@@ -1,0 +1,25 @@
+{
+    "items": [
+        {
+            "title": "iOS Style Switches",
+            "description": "Fully parametric and scalable style for HTML checkboxes which mimicks the appearance of iOS toggle switches. Created using vanilla CSS only.",
+            "tags": ["CSS"],
+            "thumbnail": "/assets/thumbnails/ios-style-switches.png",
+            "demo": "css/ios-switches/demo.html"
+        },
+        {
+            "title": "Dynamic Buttons",
+            "description": "A unique hover animation that makes buttons and other UI elements feel more physically interactive. Modeled after the hover states used in the Apple TV operating system.",
+            "tags": ["CSS", "JavaScript"],
+            "thumbnail": "/assets/thumbnails/tvos-style-3d-buttons.png",
+            "demo": "css/dynamic-buttons/demo.html"
+        },
+        {
+            "title": "Awesome Forms - Form Validation",
+            "description": "A plug and play form validation script that uses HTML5 form validation attributes and JavaScript to provide a better user experience.",
+            "tags": ["JavaScript"],
+            "thumbnail": "",
+            "demo": "javascript/awesome-forms/demo.html"
+        }
+    ]
+}

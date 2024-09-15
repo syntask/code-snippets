@@ -1,0 +1,219 @@
+<!-- Universal imports -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1,width=device-width,viewport-fit=cover" />
+        <link rel="stylesheet" href="/./assets/style.css">
+        <script src="/./assets/scripts.js"></script>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css' />
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js'></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    
+    <!-- Demo content -->
+    
+    <body>
+        <style>
+
+            input:-webkit-autofill,input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus,select:-webkit-autofill,select:-webkit-autofill:hover,select:-webkit-autofill:focus {
+                -webkit-text-fill-color: #fff;
+                -webkit-box-shadow: 0 0 0px 10000px #535440 inset;
+            }
+    
+            input:not(input:-webkit-autofill)::-webkit-contacts-auto-fill-button {
+                background-color: #fff;
+            }
+    
+            input, textarea {
+                background-color: var(--background-tertiary);
+                outline: none;
+                color: currentColor;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: .5em;
+                font-size:1rem;
+                padding: .5em;
+                flex-grow: 1;
+                transition: all .2s;
+            }
+
+            input:hover, textarea:hover{
+                border: 1px solid #108adba4;
+            }
+
+            input:focus, textarea:focus{
+                border: 2px solid #108adb;
+            }
+
+            textarea {
+                min-height: 80px;
+            }
+    
+            input[type="submit"] {
+                background-color: #108adb;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1rem;
+                padding: .5em;
+                cursor: pointer;
+                font-weight: bold;
+            }
+    
+            .af-helptext {
+                margin-top: .25em;
+                font-size: 1em;
+                color: rgb(209, 49, 49);
+            }
+    
+            label{
+                margin-right: .25em;
+                padding-bottom: .125em;
+            }
+
+            .afdemo-form-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .afdemo-form-group {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            form {
+                background-color: var(--background-secondary);
+                padding: 1em;
+                border-radius: .5em;
+                border: 1px solid var(--background-quaternary);
+                width: 100%;
+                max-width: 300px;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
+        </style>
+        <h1>Awesome Forms</h1>
+        <p>Awesome forms is a super lightweight and easy to implement form validaiton script. It is a passive validation system, meaning it won't bug you with validation errors while you are typing-- only after you click out of a form field or press the submit button will it check for valid entries. Try it out using the form below! </p>
+        <br>
+        <div class="afdemo-form-container">
+            <form>
+                <div class="afdemo-form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                    <div class="af-helptext">Please enter your name</div>
+                </div>
+        
+                <div class="afdemo-form-group">
+                    <label for="tel">Phone:</label>
+                    <input type="tel" id="tel"required>
+                    <div class="af-helptext">Please enter a valid 10-digit phone number</div>
+                </div>
+        
+                <div class="afdemo-form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    <div class="af-helptext">Please enter a valid email address</div>
+                </div>
+
+                <div class="afdemo-form-group">
+                    <div class="afdemo-h-flex">
+                        <input type="checkbox" id="consent" checked required>
+                        <label for="consent">I agree to the terms & conditions</label>
+                        <div class="af-helptext">Please agree to the terms</div>
+                    </div>
+                </div>
+
+                <div class="afdemo-form-group">
+                    <textarea style="resize: vertical;"></textarea>
+                </div>
+        
+                <input type="submit" onsubmit="alert('Form submitted successfully!')">
+            </form>
+        </div>
+
+        <br><br><br>
+        <h2>Basic usage</h2>
+        <p>1. Import the script</p>
+        <pre><code class="html">&lt;script src="awesome-forms.js"&gt;&lt;/script&gt;</code></pre>
+
+        <p>Just like that, Awesome Forms is now active on your form!</p>
+
+        <br>
+
+        <p>2. To add an error message/help text to a form field, create a div with the class af-helptext directly after it</p>
+
+        <pre><code class="html">&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" required&gt;
+&lt;div class="af-helptext"&gt;Please enter a valid email&lt;/div&gt;</code></pre>
+<p>These will be automatically hidden on load, and revealed if the script detects an error.</p>
+
+            <br><br><br>
+        <h2>Example usage</h2>
+        <p>Here is the exact code from the example above</p>
+
+        <pre><code class="html">&lt;div class="afdemo-form-container"&gt;
+    &lt;form&gt;
+        &lt;div class="afdemo-form-group"&gt;
+            &lt;label for="name"&gt;Name:&lt;/label&gt;
+            &lt;input type="text" id="name" required&gt;
+            &lt;div class="af-helptext"&gt;Please enter your name&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="afdemo-form-group"&gt;
+            &lt;label for="tel"&gt;Phone:&lt;/label&gt;
+            &lt;input type="tel" id="tel"required&gt;
+            &lt;div class="af-helptext"&gt;Please enter a valid 10-digit phone number&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="afdemo-form-group"&gt;
+            &lt;label for="email"&gt;Email:&lt;/label&gt;
+            &lt;input type="email" id="email" required&gt;
+            &lt;div class="af-helptext"&gt;Please enter a valid email address&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="afdemo-form-group"&gt;
+            &lt;div class="afdemo-h-flex"&gt;
+                &lt;input type="checkbox" id="consent" checked required&gt;
+                &lt;label for="consent"&gt;I agree to the terms & conditions&lt;/label&gt;
+                &lt;div class="af-helptext"&gt;Please agree to the terms&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="afdemo-form-group"&gt;
+            &lt;textarea style="resize: vertical;"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+
+        &lt;input type="submit" onsubmit="alert('Form submitted successfully!')"&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+
+        <br><br><br>
+
+        <h2>How it works</h2>
+        <br>
+        <h3>Phone number validation</h3>
+        <p>Automatically runs on <code>&lt;input type="tel"&gt;</code> elements. Ensures the input is a ten digit number with no non-numeric characters. When 10 digits are entered, it automatically reformats them to the following format (555) 555-5555.</p>
+        <br>
+
+        <h3>Email validation</h3>
+        <p>Automatically runs on <code>&lt;input type="email"&gt;</code> elements. Ensures the input is a valid email by making sure it contains an @ symbol with text before and after it, and ends with a domain-- basically anything ending with a dot (".") and something after it.</p>
+        <p>For example, a@b.c would register as valid but @b.c or a.c would not.</p>
+        <br>
+
+        <h3>Required field validation</h3>
+        <p>Automatically runs on any element with the <code>required</code> attribute. Ensures the field is not empty, or is not <code>unchecked</code> in the case of checkbox elements.</p>
+        <br>
+
+        <h3>Mechanism of action</h3>
+        <p>Awesome Forms is a passive validation system, meaning it won't bug you with validation errors while you are typing-- only after you click out of a form field or press the submit button will it check for valid entries.</p>
+        <p>If the script detects an error, it will block the form from being submitted using <code>event.preventDefault()</code> and will play a subtle animation to emphasize the active help text items.</p>
+
+        <br><br><br>
+        <a href="">View on GitHub</a>
+        <script src="assets/awesome-forms.js"></script>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!-- Universal imports -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dynamic Buttons</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/./assets/style.css">
+        <script src="/./assets/scripts.js"></script>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css' />
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js'></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    
+    <!-- Demo content -->
+    
+    <body>
+    
+        <link rel="stylesheet" href="assets/dynamic-buttons.css">
+        <script src="assets/dynamic-buttons.js"></script>
+    
+        <style>
+            button.example-button {
+                background-color: #0073e6;
+                border: none;
+                border-radius: 999px;
+                color: white;
+                padding: 1em 2em;
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            .circular-svg-cursor-example{
+                border-radius: .5em;
+                width: fit-content;
+                background-color: #c8cdd1;
+                padding: 4rem;
+                cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="rgb(125, 125, 125, 0.9)"><circle cx="12" cy="12" r="10"/></svg>') 12 12, auto;
+            }
+
+            .circular-svg-cursor-example button.example-button{
+                cursor: none;
+                background-color: #8d1bcf;
+            }
+        </style>
+    
+        <h1>Dynamic Buttons</h1>
+    
+        <p>I designed this JavaScript/CSS hover animation to replicate the 3D animation used on Apple TVs when you select a UI element. It makes buttons or other UI elements feel a bit more physically interactive, and the way they follow the mouse almost feels magnetic.</p>
+    
+        <br><br>
+
+        <center>
+            <button class="dynamic-button example-button">Hover me</button>
+        </center>
+
+
+        <br>
+
+        <p>It looks great on things like images to - just keep in mind for images you need to make a &lt;div&gt; with a background-image property rather than using a regular &lt;img&gt; tag.</p>
+        <br>
+        <center>
+            <div style="width: 140px; height: 180px; background-image: url('https://picsum.photos/280/360'); background-size: cover; background-position: center; border-radius: .5em;" class="dynamic-button"></div>
+        </center>
+        <br>
+        
+        <p>You can also create a really cool effect by changing the mouse cursor to a circle and hiding it when UI elements are hovered, similar to using a mouse on iPad OS.</p>
+        
+        <br>
+
+        <center>
+            <div class="circular-svg-cursor-example">
+                <button class="dynamic-button example-button">Hover me</button>
+            </div>
+        </center>
+
+        <br><br>
+
+        <h1>Basic usage</h1>
+        <p>1. Import the CSS and JavaScript files:</p>
+
+        <pre><code class="html">&lt;link rel="stylesheet" href="dynamic-buttons.css"&gt;
+&lt;script src="dynamic-buttons.js"&gt;&lt;/script&gt;</code></pre>
+        
+        <br>
+
+        <p>2. Add the "dynamic-button" class on any element you want to apply the hover animation to:</p>
+        <pre><code class="html">&lt;button class="dynamic-button"&gt;Click me!&lt;/button&gt;</code></pre>
+    
+        <p>That's it! Keep in mind, this will replace the need to implement your own CSS hover states, however you may need to define some additional classes and/or pseudo classes for mousedown or disabled states.</p>
+
+        <a href="">View on GitHub</a>
+    </body>
+</html>

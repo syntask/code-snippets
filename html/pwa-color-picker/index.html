@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width,viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Color</title>
+<style>
+:root {
+    --last-color: #ffffff;
+    --padding-left: max(env(safe-area-inset-left),16px);
+    --padding-right: max(env(safe-area-inset-right),16px);
+    --padding-top: env(safe-area-inset-top);
+    --padding-bottom: env(safe-area-inset-bottom);
+}
+html{
+	padding: 0;
+    margin: 0;
+}
+
+body {
+    height:100vh;
+    width: 100vw;
+	margin: 0;
+    padding: 0px;
+    touch-action: none;
+}
+
+.color {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    padding-left: max(env(safe-area-inset-left),16px);
+    padding-right: max(env(safe-area-inset-right),16px);
+    padding-top: max(env(safe-area-inset-top),16px);
+    padding-bottom: max(env(safe-area-inset-bottom),16px);
+    font-family: monospace;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1;
+    flex-grow: 1;
+    transition: flex-grow .5s, padding-top .5s, padding-bottom .25s, line-height .125s, height .5s;
+    text-align: left;
+}
+
+#content-area{
+	display: flex;
+    flex-direction: column;
+    height: 100dvh;
+}
+
+#color-list{
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+#top-margin{
+    /*height: env(safe-area-inset-top);*/
+    height: 0;
+}
+
+#bottom-margin{
+    /*height: env(safe-area-inset-bottom);*/
+    height: 0;
+}
+
+#add-color-button{
+    position: fixed;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+    transition: background-color .25s;
+}
+
+#add-color-button svg path {
+    transition: fill 0.25s; 
+}
+
+.pickr {
+    display: none;
+}
+
+.pcr-app {
+    margin-top: 16px !important;
+    width: 100% !important;
+    max-width: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.pcr-selection {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.pcr-color-preview {
+    display: none !important;
+}
+
+.pcr-color-chooser {
+    width: 100% !important;
+}
+
+.pcr-color-opacity {
+    width: 100% !important;
+}
+</style>
+</head>
+<body>
+<div id="content-area">
+    <div id="top-margin"></div>
+    <div id="color-list">
+
+    </div>
+    <div id="bottom-margin"></div>
+    
+    <button id="add-color-button">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17.1191 16.7578" height="25px" width="25px">
+            <g>
+             <rect height="16.7578" opacity="0" width="17.1191" x="0" y="0"/>
+             <path d="M0 8.37891C0 9.19434 0.664062 9.8584 1.47949 9.8584L6.9043 9.8584L6.9043 15.2832C6.9043 16.0938 7.56348 16.7578 8.37891 16.7578C9.19434 16.7578 9.86328 16.0938 9.86328 15.2832L9.86328 9.8584L15.2832 9.8584C16.0938 9.8584 16.7578 9.19434 16.7578 8.37891C16.7578 7.56348 16.0938 6.89453 15.2832 6.89453L9.86328 6.89453L9.86328 1.47949C9.86328 0.664062 9.19434 0 8.37891 0C7.56348 0 6.9043 0.664062 6.9043 1.47949L6.9043 6.89453L1.47949 6.89453C0.664062 6.89453 0 7.56348 0 8.37891Z" fill="var(--last-color)" fill-opacity="1"/>
+            </g>
+        </svg>
+    </button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
+<script>
+const root = document.documentElement; 
+let colors
+let lastColor
+const addColorButton = document.getElementById('add-color-button');
+
+addColor();
+
+function updateColors() {
+    colors = document.querySelectorAll('.color');
+    firstColor = colors[0];
+    lastColor = colors[colors.length - 1];
+    document.getElementById('top-margin').style.backgroundColor = firstColor.querySelector('.color-label').textContent;
+    document.getElementById('bottom-margin').style.backgroundColor = lastColor.querySelector('.color-label').textContent;
+    addColorButton.style.setProperty('background-color', safeColor(lastColor.querySelector('.color-label').textContent));
+    root.style.setProperty('--last-color', lastColor.querySelector('.color-label').textContent);
+    document.body.style.setProperty('background-color', safeColor(firstColor.querySelector('.color-label').textContent));
+    colors.forEach((color) => {
+        color.style.setProperty('background-color', color.querySelector('.color-label').textContent);
+        color.style.setProperty('color', safeColor(color.querySelector('.color-label').textContent));
+    });
+}
+
+updateColors();
+
+function initializeColor(color){
+    colorLabel = color.querySelector('.color-label');
+
+    color.style.setProperty('background-color', colorLabel.textContent);
+    color.style.setProperty('color', safeColor(colorLabel.textContent));
+    color.querySelector('.color-label').addEventListener('click', (event) => {
+        //Change the flex justify content to space-between
+        color.style.setProperty('justify-content', 'space-between');
+
+
+    // Create a div inside the color div to hold the color picker but first ensure it doesn't already exist
+    if (!color.querySelector('.pickr')) {
+        //Create the div before any other elements in the color div
+        const pickerElement = document.createElement('div');
+        color.insertBefore(pickerElement, color.firstChild);
+        const pickr = Pickr.create({
+            el: pickerElement,
+            theme: 'nano', // or 'classic', 'monolith', 'nano'
+            default: color.querySelector('.color-label').textContent,
+            inline: true,
+            container: 'body',
+            components: {
+                // Main components
+                preview: true,
+                opacity: false,
+                hue: true,
+
+                // Input / output Options
+                interaction: {
+                    //hex: true,
+                    //rgba: true,
+                    //hsla: true,
+                    //hsva: true,
+                    //cmyk: true,
+                    //input: true,
+                    //save: true
+                }
+            }
+        });
+        pickerElement.style.setProperty('display', 'none');
+        pickr.on('change', (colorIndex, instance) => {
+            color.querySelector('.color-label').textContent = colorIndex.toHEXA().toString();
+            pickr.applyColor(true);
+            updateColors();
+        });
+
+        pickr.on('hide', (colorIndex, instance) => {
+            //delete any chlidren of the color div that are class .pickr or .pcr-app
+            color.querySelectorAll('.pickr, .pcr-app').forEach((element) => {
+                element.remove();
+                color.style.setProperty('justify-content', 'flex-end');
+            });
+        });
+
+        pickr.on('save', (colorIndex, instance) => {
+            //delete any chlidren of the color div that are class .pickr or .pcr-app
+            color.querySelectorAll('.pickr, .pcr-app').forEach((element) => {
+                element.remove();
+                color.style.setProperty('justify-content', 'flex-end');
+            });
+        });
+    }
+
+        // Simulate a click on the color picker
+        color.querySelector('.pcr-button').click();
+    });
+}
+
+function safeColor(color) {
+    const r = parseInt(color.substr(1, 2), 16);
+    const g = parseInt(color.substr(3, 2), 16);
+    const b = parseInt(color.substr(5, 2), 16);
+    const brightness = Math.sqrt(0.299 * r * r + 0.587 * g * g + 0.114 * b * b);
+    if (brightness < 128) {
+        // A function that returns a lighter version of the input color
+        const factor = .5; // adjust this value to control the lightness
+        const newR = Math.floor(r + (255 - r) * factor);
+        const newG = Math.floor(g + (255 - g) * factor);
+        const newB = Math.floor(b + (255 - b) * factor);
+        return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+    } else {
+        // A function that returns a darker version of the input color
+        const factor = .5; // adjust this value to control the darkness
+        const newR = Math.floor(r * factor);
+        const newG = Math.floor(g * factor);
+        const newB = Math.floor(b * factor);
+        return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+    }
+}
+
+function generateRandomColor() {
+    let color = '#';
+    const characters = '0123456789ABCDEF';
+    for (let i = 0; i < 6; i++) {
+        color += characters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function addColor() {
+    const newColor = document.createElement('div');
+    const newColorLabel = document.createElement('div');
+    newColor.classList.add('color');
+    newColorLabel.classList.add('color-label');
+    newColorLabel.textContent = generateRandomColor();
+    document.getElementById('color-list').appendChild(newColor);
+    newColor.appendChild(newColorLabel);
+    initializeColor(newColor);
+    newColor.style.setProperty('flex-grow', '0');
+    newColor.style.setProperty('overflow', 'hidden');
+    newColor.style.setProperty('padding-top', '0');
+    newColor.style.setProperty('padding-bottom', '0');
+    newColor.style.setProperty('line-height', '0');
+    setTimeout(() => {
+        newColor.style.setProperty('line-height', '');
+        newColor.style.setProperty('padding-top', '');
+        newColor.style.setProperty('padding-bottom', '');
+        newColor.style.setProperty('flex-grow', '');
+    }, 0);
+}
+
+addColorButton.addEventListener('click', (event) => {
+    addColor();
+    updateColors();
+});
+
+//reset #content-area height on orientation change
+window.addEventListener('orientationchange', () => {
+    document.getElementById('content-area').style.height = '100dvh';
+});
+window.addEventListener('resize', () => {
+    document.getElementById('content-area').style.height = '100dvh';
+});
+</script>
+</body>
+</html>
